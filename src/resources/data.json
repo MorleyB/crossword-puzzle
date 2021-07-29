@@ -29,18 +29,18 @@
     ],
     "hints": {
       "across": {
-        "1": "Energy"
-        "5": "Five on a par four, e.g.",
-        "10": "Bottom of a pond food chain",
-        "15": "Light My Fire band, with the",
-        "20": "Show on which Kate McKinnon impersonates Hillary Clinton"
+        "0": "Energy",
+        "1": "Five on a par four, e.g.",
+        "2": "Bottom of a pond food chain",
+        "3": "Light My Fire band, with the",
+        "4": "Show on which Kate McKinnon impersonates Hillary Clinton"
       },
       "down": {
         "1": "Preppy shirts",
         "2": "Goad",
         "3": "Find in an oyster",
-        "5": "Scolding word to a dog",
-        "9": "Sure thing!"
+        "0": "Scolding word to a dog",
+        "4": "Sure thing!"
       }
     }
   },
@@ -74,18 +74,18 @@
     ],
     "hints": {
       "across": {
-        "1": "Chess piece",
-        "7": "CAT scan alternative",
-        "10": "Chess piece",
-        "15": "Trendy boot brand",
-        "20": "Fictional captain who said Thou damned whale!"
+        "0": "Chess piece",
+        "1": "CAT scan alternative",
+        "2": "Chess piece",
+        "3": "Trendy boot brand",
+        "4": "Fictional captain who said Thou damned whale!"
       },
       "down": {
         "2": "Last Greek letter",
         "3": "Sought-after rock",
         "4": "Chess piece",
-        "5": "Greenish-blue hue",
-        "11": "This is the worst!"
+        "0": "Greenish-blue hue",
+        "1": "This is the worst!"
       }
     }
   },
@@ -119,18 +119,18 @@
     ],
     "hints": {
       "across": {
-        "1": "Adversary",
-        "7": "Plant with fronds",
-        "10": "Simone ___, five-time Olympic medal-winning gymnast competing in Tokyo",
-        "15": "Colored part of the eye",
-        "20": "___ freestyle, sport debuting at the Tokyo Games"
+        "0": "Adversary",
+        "1": "Plant with fronds",
+        "2": "Simone ___, five-time Olympic medal-winning gymnast competing in Tokyo",
+        "3": "Colored part of the eye",
+        "4": "___ freestyle, sport debuting at the Tokyo Games"
       },
       "down": {
         "2": "Allyson ___, nine-time Olympic medal-winning sprinter competing in Tokyo",
         "3": "Gold and silver have them, but not bronze",
         "4": "Letters between ems and ohs",
-        "5": "Al dente",
-        "11": "Baby's spill protector"
+        "1": "Al dente",
+        "0": "Baby's spill protector"
       }
     }
   }

@@ -6,14 +6,11 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class JsonFileReader {
 
-    LinkedList data;
+    LinkedList<?> data;
 
     public LinkedList read() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
@@ -34,6 +31,7 @@ public class JsonFileReader {
         try {
             data = (LinkedList) parser.parse(reader, containerFactory);
             data.forEach((i)->System.out.println("Item : " + i));
+
         } catch(ParseException pe) {
             System.out.println("position: " + pe.getPosition());
             System.out.println(pe);

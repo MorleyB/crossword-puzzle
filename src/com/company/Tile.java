@@ -9,18 +9,21 @@ public class Tile extends Rectangle {
 
     int[] tilePosition;
     String value;
-    char guess;
+    String guess = "";
     Boolean active;
     Boolean focused;
     Boolean isEmpty;
+    StackPane stack;
+    Boolean isCorrect = true;
 
     public Tile(double side, int[] position, String value, Boolean active, Boolean focused, Boolean empty){
         super(side,side);
-        tilePosition = position;
+        this.tilePosition = position;
         this.value = value;
         this.active = active;
         this.focused = focused;
         this.isEmpty = empty;
+        this.stack = new StackPane();
         setTileProps();
     }
 
@@ -39,17 +42,66 @@ public class Tile extends Rectangle {
                 this.setFill(Color.LIGHTBLUE);
             }
         }
-        System.out.println("value: " + value);
+    }
+
+    public void setFocused(Boolean val) {
+        focused = val;
+        setTileProps();
+    }
+
+    public void setActive(Boolean val) {
+        active = val;
+        setTileProps();
+    }
+
+    public void setGuess(String val) {
+        guess = val;
+        if (!guess.equals(value)) {
+            isCorrect = false;
+        }
     }
 
     public StackPane draw() {
-        Text text = new Text ("" + guess);
-        StackPane stack = new StackPane();
-        stack.getChildren().addAll(this, text);
+        stack.getChildren().addAll(this);
         return stack;
+    }
+
+    public void redraw() {
+        Text text = new Text ("" + guess);
+        text.setStyle("-fx-font: 20 system;");
+        stack.getChildren().setAll(this, text);
+    }
+
+    public void clear() {
+        guess = "";
+        redraw();
+    }
+
+    public void displayError() {
+        System.out.println("displaying Error");
+        Text text = new Text ("" + guess);
+        text.setFill(Color.RED);
+        text.setStyle("-fx-font: 20 system;");
+        stack.getChildren().setAll(this, text);
     }
 
     public int[] getPosition() {
         return tilePosition;
+    }
+
+    public Boolean getFocused() {
+        return focused;
+    }
+
+    public Boolean getIsCorrect() {
+        return isCorrect;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Tile[acrossPosition=" + getPosition()[0] + ", downPosition=" + getPosition()[1] +
+                        ", value=" + value + ", isEmpty=" + isEmpty + ", active=" + active
+        );
     }
 }

@@ -1,18 +1,43 @@
 package com.company;
 
-import org.json.simple.JSONObject;
+import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class JsonFileReader {
 
-    public void read() throws IOException, ParseException {
+    LinkedList data;
+
+    public LinkedList read() throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        FileReader reader = new FileReader(".\\resources\\data.json");
-        Object obj = parser.parse(reader);
-        JSONObject data = (JSONObject) obj;
+        FileReader reader = new FileReader("src/resources/data.json");
+
+        // create custom container for parsed json
+        ContainerFactory containerFactory = new ContainerFactory() {
+            @Override
+            public Map createObjectContainer() {
+                return new LinkedHashMap<>();
+            }
+            @Override
+            public List creatArrayContainer() {
+                return new LinkedList<>();
+            }
+        };
+
+        try {
+            data = (LinkedList) parser.parse(reader, containerFactory);
+            data.forEach((i)->System.out.println("Item : " + i));
+        } catch(ParseException pe) {
+            System.out.println("position: " + pe.getPosition());
+            System.out.println(pe);
+        }
+        return data;
     }
 }

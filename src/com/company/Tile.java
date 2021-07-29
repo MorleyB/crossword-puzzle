@@ -8,14 +8,38 @@ import javafx.scene.text.Text;
 public class Tile extends Rectangle {
 
     int[] tilePosition;
-    char value;
+    String value;
     char guess;
+    Boolean active;
+    Boolean focused;
+    Boolean isEmpty;
 
-    public Tile(double side, int xPos, int yPos){
+    public Tile(double side, int[] position, String value, Boolean active, Boolean focused, Boolean empty){
         super(side,side);
-        setPosition(yPos, xPos);
-        this.setFill(Color.WHITE);
-        this.setStyle("-fx-stroke: black; -fx-stroke-width: .5;");
+        tilePosition = position;
+        this.value = value;
+        this.active = active;
+        this.focused = focused;
+        this.isEmpty = empty;
+        setTileProps();
+    }
+
+    public void setTileProps() {
+        if (!isEmpty) {
+            this.setFill(Color.WHITE);
+            this.setStyle("-fx-stroke: black; -fx-stroke-width: .5;");
+        } else {
+            this.setStyle("-fx-stroke: white; -fx-stroke-width: .2;");
+        }
+
+        if (active && !isEmpty) {
+            if (focused) {
+                this.setFill(Color.LIGHTGOLDENRODYELLOW);
+            } else {
+                this.setFill(Color.LIGHTBLUE);
+            }
+        }
+        System.out.println("value: " + value);
     }
 
     public StackPane draw() {
@@ -25,14 +49,7 @@ public class Tile extends Rectangle {
         return stack;
     }
 
-    public void setPosition(int x, int y) {
-        tilePosition = new int[2];
-        tilePosition[0] = y;
-        tilePosition[1] = x;
-    }
-
     public int[] getPosition() {
         return tilePosition;
     }
-
 }

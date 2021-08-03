@@ -16,6 +16,8 @@
 <BorderPane fx:controller="com.company.Controller" xmlns:fx="http://javafx.com/fxml">
     <top>
         <ToolBar xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+            <Label fx:id="winnerMsg" text="Congratulations! You solved the puzzle"
+                   visible="false" alignment="CENTER" wrapText="true"/>
             <Pane HBox.hgrow="ALWAYS"/>
             <MenuBar>
                 <Menu text="Menu">
@@ -23,7 +25,7 @@
                     <SeparatorMenuItem/>
                     <MenuItem text="Autocheck" onAction="#handleAutocheckAction"/>
                     <SeparatorMenuItem/>
-                    <MenuItem text="Reveal Puzzle"/>
+                    <MenuItem text="Reveal Puzzle" onAction="#handleRevealAction"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Clear Puzzle" onAction="#handleClearAction"/>
                 </Menu>

@@ -2,9 +2,7 @@ package com.company;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -25,6 +23,9 @@ public class Controller {
 
     @FXML
     private Label hint;
+
+    @FXML
+    private Label winnerMsg;
 
     private Puzzle puzzle;
     private ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -108,13 +109,21 @@ public class Controller {
 
         // set first hint
         hint.setText(puzzle.getHint(direction, "0"));
-
+        winnerMsg.setVisible(false);
     }
 
     @FXML private void handleClearAction(ActionEvent event) {
         for (Tile tile : tiles) {
             tile.clear();
         }
+        winnerMsg.setVisible(false);
+    }
+
+    @FXML private void handleRevealAction(ActionEvent event) {
+        for (Tile tile : tiles) {
+            tile.reveal();
+        }
+        winnerMsg.setVisible(false);
     }
 
     @FXML private void handleAutocheckAction(ActionEvent event) {
@@ -124,6 +133,17 @@ public class Controller {
 
         for (Tile tile : incorrectTiles) {
             tile.displayError();
+        }
+
+
+        if (incorrectTiles.size() == 0) {
+            ArrayList<Tile> correctTiles = tiles.stream()
+                    .filter(tile -> tile.getIsCorrect())
+                    .collect(Collectors.toCollection(ArrayList::new));
+
+            if (correctTiles.size() == tiles.size()) {
+                winnerMsg.setVisible(true);
+            }
         }
     }
 

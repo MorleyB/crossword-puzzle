@@ -72,6 +72,12 @@ public class Tile extends Rectangle {
         stack.getChildren().setAll(this, text);
     }
 
+    public void reveal() {
+        Text text = new Text ("" + value);
+        text.setStyle("-fx-font: 20 system;");
+        stack.getChildren().setAll(this, text);
+    }
+
     public void clear() {
         guess = "";
         redraw();

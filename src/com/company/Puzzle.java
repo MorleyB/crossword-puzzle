@@ -1,21 +1,34 @@
 package com.company;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class Puzzle {
 
-    int id;
+    int id = 0;
     Map item;
-    LinkedList cells;
     Map hints;
     Map across;
     Map down;
 
-    public Puzzle(int idx, LinkedList data) {
-        id = idx;
+    LinkedList data;
+    LinkedList cells;
+
+    @FXML
+    private Label hint;
+
+    public Puzzle(LinkedList data, Label hint) {
+        this.data = data;
         item = (Map) data.get(id);
+        refreshPuzzle();
+        this.hint = hint;
+    }
+
+    private void refreshPuzzle() {
         cells = (LinkedList) item.get("cells");
         hints = (Map) item.get("hints");
         across = (Map) hints.get("across");
@@ -26,12 +39,26 @@ public class Puzzle {
         return cells;
     }
 
-    public String getHint(Controller.PuzzleDirection direction, String key) {
-        if (direction.equals(Controller.PuzzleDirection.ACROSS)) {
-            return (String) across.get(key);
+    public String getDownHint(String key) {
+        System.out.println("down: " + key);
+        return (String) down.get(key);
+    }
+
+    public String getAcrossHint(String key) {
+        System.out.println("across: " + key);
+        return (String) across.get(key);
+    }
+
+    public Puzzle getNextPuzzle() {
+        if (id == data.size() - 1) {
+            id = 0;
         } else {
-            return (String) down.get(key);
+            id++;
         }
+
+        item = (Map) data.get(id);
+        refreshPuzzle();
+        return this;
     }
 
 }

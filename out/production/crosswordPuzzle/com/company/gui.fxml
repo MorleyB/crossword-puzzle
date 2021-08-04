@@ -33,7 +33,7 @@
         </ToolBar>
     </top>
     <center>
-        <GridPane fx:id="gameBoard" alignment="center"
+        <GridPane fx:id="gamePane" alignment="center"
                   onMouseClicked="#handleBoardClicked"
                   onKeyPressed="#handleTilePress" />
     </center>

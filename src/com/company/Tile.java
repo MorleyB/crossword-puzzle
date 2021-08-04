@@ -14,7 +14,7 @@ public class Tile extends Rectangle {
     Boolean focused;
     Boolean isEmpty;
     StackPane stack;
-    Boolean isCorrect = true;
+    Boolean isCorrect = false;
 
     public Tile(double side, int[] position, String value, Boolean active, Boolean focused, Boolean empty){
         super(side,side);
@@ -56,7 +56,9 @@ public class Tile extends Rectangle {
 
     public void setGuess(String val) {
         guess = val;
-        if (!guess.equals(value)) {
+        if (guess.equals(value)) {
+            isCorrect = true;
+        } else {
             isCorrect = false;
         }
     }
@@ -76,6 +78,7 @@ public class Tile extends Rectangle {
         Text text = new Text ("" + value);
         text.setStyle("-fx-font: 20 system;");
         stack.getChildren().setAll(this, text);
+        setGuess(value);
     }
 
     public void clear() {

@@ -47,3 +47,6 @@ This puzzle was inspired by the New York Times mini-crossword.
 1. Download repository
 2. Run the Main file
 
+## Challenges
+This is my first project written in Java. I was also very new to JavaFX and intentionally applying software design principles to the design of the application. 
+
